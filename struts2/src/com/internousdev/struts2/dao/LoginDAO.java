@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.internousdev.struts2.dto.ItemDTO;
 import com.internousdev.struts2.dto.LoginDTO;
 import com.internousdev.struts2.util.DBConnector;
 
@@ -39,6 +41,32 @@ public class LoginDAO {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+
+	public ArrayList<ItemDTO> getitemID(){
+		ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
+		DBConnector db = new DBConnector();
+		Connection con = db.getConnection();
+
+		String sql = "select * from items";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				ItemDTO dto = new ItemDTO();
+				dto.setItemID(rs.getString("itemID"));
+				itemList.add(dto);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+			con.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return itemList;
 	}
 
 }

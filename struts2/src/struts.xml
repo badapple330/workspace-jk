@@ -6,9 +6,17 @@
 <struts>
 <constant name ="struts.devMode" value="true"/>
 <package name="com.internousdev.struts2.action" extends="struts-default">
-<action name ="LoginAction" class="com.internousdev.struts2.action.LoginAction" method="execute">
-	<result name="success">loginSuccess.jsp</result>
-	<result name="error">loginError.jsp</result>
-</action>
+
+
+	<action name ="LoginAction" class="com.internousdev.struts2.action.LoginAction" method="execute">
+		<result name="success">loginSuccess.jsp</result>
+		<result name="error">login.jsp</result>
+	</action>
+
+	<action name ="GoItemDetailAction" class="com.internousdev.struts2.action.GoItemDetailAction" method="execute">
+		<result name="success">ItemDetail.jsp</result>
+		<result name="error">loginSuccess.jsp</result>
+	</action>
+
 </package>
 </struts>

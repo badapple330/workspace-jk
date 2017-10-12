@@ -6,9 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <meta charset=utf-8”> -->
-<title>Success</title>
+<title>トップページ</title>
 </head>
 <body>
-<h1>成功</h1>
+<h1>トップページ</h1>
+<s:iterator value = "itemList">
+	<a href="<s:url action="GoItemDetailAction"><s:param name="itemID" value="itemID"/></s:url>">test</a>
+</s:iterator>
 </body>
 </html>
