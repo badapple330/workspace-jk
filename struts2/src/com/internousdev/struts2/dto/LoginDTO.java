@@ -11,7 +11,7 @@ public class LoginDTO {
 	private String password;
 	/**
 	 * id取得メソッド
-	 * @auther Toshifumi Yamashita
+	 * @auther  
 	 * @return id
 	 */
 	public int getId() {
@@ -19,7 +19,7 @@ public class LoginDTO {
 	}
 	/**
 	 *  id格納メソッド
-	 * @auther Toshifumi Yamashita
+	 * @auther  
 	 * @param id
 	 */
 	public void setId(int id) {
@@ -27,7 +27,7 @@ public class LoginDTO {
 	}
 	/**
 	 * name取得メソッド
-	 * @auther Toshifumi Yamashita
+	 * @auther  
 	 * @return name
 	 */
 	public String getName() {
@@ -35,7 +35,7 @@ public class LoginDTO {
 	}
 	/**
 	 *  name格納メソッド
-	 * @auther Toshifumi Yamashita
+	 * @auther  
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -43,7 +43,7 @@ public class LoginDTO {
 	}
 	/**
 	 * password取得メソッド
-	 * @auther Toshifumi Yamashita
+	 * @auther  
 	 * @return password
 	 */
 	public String getPassword() {
@@ -51,7 +51,7 @@ public class LoginDTO {
 	}
 	/**
 	 *  password格納メソッド
-	 * @auther Toshifumi Yamashita
+	 * @auther  
 	 * @param password
 	 */
 	public void setPassword(String password) {

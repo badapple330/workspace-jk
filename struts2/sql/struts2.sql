@@ -14,7 +14,11 @@ insert into user values(4, "saburo", "123");
 
 
 商品情報
-create table items(
+create table items(itemid, itemname, price, stocks
 
 カート情報を追加していく。
-create table cart(
+create table cart(userid, itemid, quantity, i
+
+create table creditcard(userid←こいつ自動的に付与するようにDBを作成してくれ)
+
+create table history()
