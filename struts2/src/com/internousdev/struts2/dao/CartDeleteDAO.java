@@ -16,7 +16,7 @@ public class CartDeleteDAO {
 		int ret = 0;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-		String sql = "delete from carts where user_id=? and item_id =?";
+		String sql = "delete from cart where user_id=? and item_id =?";
 		try{
 			for(int i=0;i<itemIdList.size();i++){
 				PreparedStatement ps = con.prepareStatement(sql);
@@ -39,5 +39,7 @@ public class CartDeleteDAO {
         }
 		return ret;
 	}
+
+
 
 }

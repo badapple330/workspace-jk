@@ -7,11 +7,17 @@ package com.internousdev.struts2.dto;
 public class LoginDTO {
 
 	private int id;
-	private String name;
+
+	private String userID;
+
 	private String password;
+
+	private int adminflg;
+
+
 	/**
 	 * id取得メソッド
-	 * @auther  
+	 * @auther
 	 * @return id
 	 */
 	public int getId() {
@@ -19,31 +25,16 @@ public class LoginDTO {
 	}
 	/**
 	 *  id格納メソッド
-	 * @auther  
+	 * @auther
 	 * @param id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	/**
-	 * name取得メソッド
-	 * @auther  
-	 * @return name
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 *  name格納メソッド
-	 * @auther  
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	/**
 	 * password取得メソッド
-	 * @auther  
+	 * @auther
 	 * @return password
 	 */
 	public String getPassword() {
@@ -51,11 +42,25 @@ public class LoginDTO {
 	}
 	/**
 	 *  password格納メソッド
-	 * @auther  
+	 * @auther
 	 * @param password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
+	public int getAdminflg() {
+		return adminflg;
+	}
+	public void setAdminflg(int adminflg) {
+		this.adminflg = adminflg;
 	}
 
 }

@@ -43,6 +43,8 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 		String ret = ERROR;
 		userID = (String) session.get("userID");
 		CartDeleteDAO dao = new CartDeleteDAO();
+//		ArrayList<String> itemIdList = new ArrayList<String>();
+//		itemIdList = getItemIdList();
 		if(dao.delete(userID, itemIdList)>0){
 			ret = SUCCESS;
 		}

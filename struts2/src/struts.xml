@@ -6,16 +6,49 @@
 <struts>
 <constant name ="struts.devMode" value="true"/>
 <package name="com.internousdev.struts2.action" extends="struts-default">
-
-
 	<action name ="LoginAction" class="com.internousdev.struts2.action.LoginAction" method="execute">
 		<result name="success">loginSuccess.jsp</result>
 		<result name="error">login.jsp</result>
 	</action>
 
 	<action name ="GoItemDetailAction" class="com.internousdev.struts2.action.GoItemDetailAction" method="execute">
-		<result name="success">ItemDetail.jsp</result>
+		<result name="success">itemDetail.jsp</result>
+		<result name="error">itemDetail.jsp</result>
+	</action>
+
+	<action name ="GoCartAction" class="com.internousdev.struts2.action.GoCartAction" method="execute">
+		<result name="success">cart.jsp</result>
 		<result name="error">loginSuccess.jsp</result>
+	</action>
+
+	<action name ="CartUpdateAction" class="com.internousdev.struts2.action.CartUpdateAction" method="execute">
+		<result name="success">cart.jsp</result>
+		<result name="error">cart.jsp</result>
+	</action>
+
+	<action name ="CartDeleteAction" class="com.internousdev.struts2.action.CartDeleteAction" method="execute">
+		<result name="success">cart.jsp</result>
+		<result name="error">cart.jsp</result>
+	</action>
+
+	<action name ="GoPaymentAction" class="com.internousdev.struts2.action.GoPaymentAction" method="execute">
+		<result name="success">payment.jsp</result>
+		<result name="error">cart.jsp</result>
+	</action>
+
+	<action name ="PaymentAction" class="com.internousdev.struts2.action.PaymentAction" method="execute">
+		<result name="success">confirm.jsp</result>
+		<result name="error">payment.jsp</result>
+	</action>
+
+	<action name ="GoMypageAction" class="com.internousdev.struts2.action.GoMypageAction" method="execute">
+		<result name="success">mypage.jsp</result>
+		<result name="error">mypage.jsp</result>
+	</action>
+
+	<action name ="MypageAction" class="com.internousdev.struts2.action.MypageAction" method="execute">
+		<result name="success">mypage.jsp</result>
+		<result name="error">mypage.jsp</result>
 	</action>
 
 </package>

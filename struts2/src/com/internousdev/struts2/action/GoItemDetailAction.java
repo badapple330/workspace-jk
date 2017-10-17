@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.struts2.dao.GoItemDetailActionDAO;
+import com.internousdev.struts2.dao.GoItemDetailDAO;
 import com.internousdev.struts2.dto.ItemDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -34,11 +34,17 @@ public class GoItemDetailAction extends ActionSupport implements SessionAware{
 
 	public String execute(){
 		String result = ERROR;
-		GoItemDetailActionDAO dao = new GoItemDetailActionDAO();
-		ItemDTO dto = new ItemDTO();
-		dto = dao.select(itemID);
-		if(dto.getItemName() != null){
-			session.put("itemID", dto.getItemID());
+		GoItemDetailDAO dao = new GoItemDetailDAO();
+		itemInfoList = dao.select(itemID);
+
+		//		ItemDTO dto = new ItemDTO();
+//		itemID = dto.getItemID();
+//		itemName = dto.getItemName();
+//		price = dto.getPrice();
+//		stocks = dto.getStocks();
+
+		if(itemInfoList.size()>0){
+			session.put("itemID", itemID);
 			result = SUCCESS;
 		}
 		return result;

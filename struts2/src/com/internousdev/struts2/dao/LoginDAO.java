@@ -15,22 +15,22 @@ import com.internousdev.struts2.util.DBConnector;
 
 public class LoginDAO {
 
-	public LoginDTO select(String name, String password){
+	public LoginDTO select(String userID, String password){
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 		LoginDTO dto = new LoginDTO();
 
-		String sql = "select * from user where user_name=? and password=?";
+		String sql = "select * from user where user_id=? and password=?";
 
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
-
-			ps.setString(1,  name);
+			ps.setString(1, userID);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				dto.setName(rs.getString("user_name"));
+				dto.setUserID(rs.getString("user_id"));
 				dto.setPassword(rs.getString("password"));
+				dto.setAdminflg(rs.getInt("adminflg"));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class LoginDAO {
 		return dto;
 	}
 
-	public ArrayList<ItemDTO> getitemID(){
+	public ArrayList<ItemDTO> getItemID(){
 		ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
@@ -54,7 +54,7 @@ public class LoginDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				ItemDTO dto = new ItemDTO();
-				dto.setItemID(rs.getString("itemID"));
+				dto.setItemID(rs.getString("item_id"));
 				itemList.add(dto);
 			}
 		}catch(SQLException e){

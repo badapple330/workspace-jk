@@ -24,9 +24,13 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	 *
 	 */
 	private static final long serialVersionUID = -3068950895491830095L;
-	private String name;
+
+	private String userID;
+
 	private String password;
+
 	private Map<String, Object> session;
+
 	private ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 
 	private String itemID;
@@ -36,24 +40,28 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		LoginDAO dao = new LoginDAO();
 		LoginDTO dto = new LoginDTO();
 
-		dto = dao.select(name, password);
-		if(name.equals(dto.getName())){
+		dto = dao.select(userID, password);
+		if(userID.equals(dto.getUserID())){
 			if(password.equals(dto.getPassword())){
-			ret = SUCCESS;
-			session.put("name", dto.getName());
+				if(dto.getAdminflg()==0){
+					ret = SUCCESS;
+					session.put("userID", dto.getUserID());
+					itemList = dao.getItemID();
+				}else if(dto.getAdminflg()==1){
+					ret = "admin";
+					session.put("userID", dto.getUserID());
+					session.put("adminflg", dto.getAdminflg());
+				}
 			}
-		}
-		if(ret.equals("SUCCESS")){
-			itemList = dao.getitemID();
 		}
 		return ret;
 	}
 
-	public String getName(){
-		return name;
+	public String getUserID(){
+		return userID;
 	}
-	public void setName(String name){
-		this.name = name;
+	public void setUserID(String userID){
+		this.userID = userID;
 	}
 
 	public String getPassword(){

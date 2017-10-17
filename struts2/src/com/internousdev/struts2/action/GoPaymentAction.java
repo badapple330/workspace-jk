@@ -9,18 +9,20 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.struts2.dao.GoCartDAO;
-import com.internousdev.struts2.dao.GoItemDetailDAO;
 import com.internousdev.struts2.dto.ItemDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class GoCartAction extends ActionSupport implements SessionAware {
+/**
+ * @author internousdev
+ *
+ */
+public class GoPaymentAction extends ActionSupport implements SessionAware{
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = -2206324311654435506L;
+	private static final long serialVersionUID = 1179598962298241185L;
 
-	//stocks = 0ならtopへ
 	private String userID;
 
 	private String itemID;
@@ -45,26 +47,16 @@ public class GoCartAction extends ActionSupport implements SessionAware {
 
 	private Map<String, Object> session;
 
+
 	public String execute(){
 		String ret = ERROR;
 		GoCartDAO dao = new GoCartDAO();
 		userID = (String) session.get("userID");
-		itemID = (String) session.get("itemID");
-		//在庫切れ判定
-		if(stocks == 0){
-			System.out.println("この商品は在庫切れ");
-			GoItemDetailDAO dao2 = new GoItemDetailDAO();
-			setItemInfoList(dao2.select(userID));
-			return ret;
+		cartInfoList = dao.select(userID);
+		if(cartInfoList.size()>0){
+			ret = SUCCESS;
 		}else{
-			if(dao.insert(userID, itemID, itemName, price, 1)>0){
-				cartInfoList = dao.select(userID);
-				for(int i=0;i<cartInfoList.size();i++){
-					amountAll = amountAll + (cartInfoList.get(i).getSubtotal());
-				}
-				itemIdList = dao.getItemIdList();
-				ret = SUCCESS;
-			}
+			System.out.println("カートの中身がないです");
 		}
 		return ret;
 	}

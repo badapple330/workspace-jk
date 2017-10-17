@@ -28,7 +28,10 @@
 	合計金額:<s:property value="total"/>
 
 <table border="1">
-<!-- 現金の場合はjavascriptでここを隠す -->
+<!-- クレジットカードの場合のみ出力。現金の場合はjavascriptでここを隠す -->
+<!--
+<s:if test=""/>を使u。session.containskey("paySelect"==1)がクレジットカードなら。
+ -->
 	<tr>
 		<td>支払い方法：<s:property value="paySelect" /></td>
 		<td>カード会社：<s:property value="cardCategory" /></td>

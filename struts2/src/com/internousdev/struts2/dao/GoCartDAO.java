@@ -19,8 +19,6 @@ public class GoCartDAO {
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 //		ItemDTO dto = new ItemDTO();
-	//session
-	//itemDTOにquantity]
 		String sql = "insert into cart(user_id, item_id, item_name, price, quantity) "
 				+ "values(?,?,?,?,?)";
 		try{
@@ -39,9 +37,7 @@ public class GoCartDAO {
 	}
 
 
-	//選択削除用
-	ArrayList<String> itemIdList = new ArrayList<String>();
-
+//表示用のリストをcartから取得
 	public ArrayList<ItemDTO> select(String userID){
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
@@ -63,6 +59,7 @@ public class GoCartDAO {
 				cartInfoList.add(dto);
 				itemIdList.add(rs.getString("item_id"));
 			}
+			//itemIdのリストをセット。選択削除のときにリストで返ってくるから
 			setItemIdList(itemIdList);
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -76,6 +73,8 @@ public class GoCartDAO {
 		return cartInfoList;
 	}
 
+	//選択削除用
+	ArrayList<String> itemIdList = new ArrayList<String>();
 	//itemIdList get.set
 	public ArrayList<String> getItemIdList(){
 		return itemIdList;

@@ -9,17 +9,16 @@
 </head>
 <body>
 <h1>商品詳細</h1>
-
-<s:hidden name="itemID" value="itemID"/>
-<s:hidden name="itemName" value="itemName"/>
-<s:hidden name="stocks" value="stocks"/>
-<s:hidden name="imgPath" value="imgPath"/>
-<p><s:text name="商品名:"/><s:property value="itemName"/></p>
-<p><s:text name="値段:"/><s:property value="price"/></p>
-<p><s:text name="在庫:"/><s:property value="stocks"/></p>
-<p><s:text name="画像:"/><s:property value="imaPath"/></p>
-<s:submit value="カートに入れる" action="GoCartAction"/>
-
+<s:form action="GoCartAction">
+	<s:iterator value="itemInfoList">
+		<s:hidden name="itemID" value="itemID"><s:property value="itemName"/></s:hidden>
+		<p><s:text name="商品名:"/><s:hidden name="itemName"><s:property value="itemName"/></s:hidden></p>
+		<p><s:text name="値段:"/><s:hidden name="price"><s:property value="price"/></s:hidden></p>
+		<p><s:text name="在庫:"/><s:hidden name="stocks"><s:property value="stocks"/></s:hidden></p>
+		<p><s:text name="画像:"/><s:property value="imaPath"/></p>
+		<s:submit value="カートに入れる"/>
+	</s:iterator>
+</s:form>
 
 </body>
 </html>

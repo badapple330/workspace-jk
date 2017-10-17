@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+<title>Sign up</title>
 </head>
 <body>
-<s:form action ="LoginAction">
+<s:form action="CreateUserAction">
 	<s:textfield name="userID"/>
-	<s:password name ="password"/>
-	<s:submit value = "ログイン"/>
+	<s:textfield name="password"/>
+	<s:submit value="アカウントを作成"/>
 </s:form>
 </body>
 </html>

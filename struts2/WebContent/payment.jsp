@@ -14,6 +14,7 @@
 あるいは、現金かクレジットカードにsubmitボタンを作成して、
 このjspを再構成する？
  -->
+<a href="createcreditcard.jsp">クレジットカードを登録する</a>
 
 <s:form action="PaymentAction">
 	<p>
@@ -21,7 +22,7 @@
 		<input type="checkbox" name="paySelect" value="2">現金
 		<!-- 現金を選択したらjavascriptでクレカ入力欄機能を停止させる -->
 	</p>
-		<p>
+	<p>
 		<input type="checkbox" name="cardCategory" value="visa" checked="checked">VISA
 		<input type="checkbox" name="cardCategory" value="master">MASTER
 		<input type="checkbox" name="cardCategory" value="american">AMERICAN
@@ -45,7 +46,7 @@
 	期限年：<s:textfield name="year"required/>
 	セキュリティコード：<s:textfield name="security"required/>
 
-	<s:submit value="決定"/>
+	<s:submit value="確認画面へ進む"/>
 </s:form>
 
 

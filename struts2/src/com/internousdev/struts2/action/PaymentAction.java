@@ -46,6 +46,7 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     		userID = (String) session.get("userID");
     		//現金かクレカか
     		if(paySelect.equals("1")){ //クレカの場合
+    			session.put("paySelect", 1);
     			if(dao.select(cardCategory, cardHolder, cardNumber, month, year, security, userID)>0){
     				GoCartDAO dao2 = new GoCartDAO();
     				cartInfoList = dao2.select(userID);
