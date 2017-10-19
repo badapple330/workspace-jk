@@ -35,6 +35,8 @@
 		<result name="success">payment.jsp</result>
 		<result name="error">cart.jsp</result>
 	</action>
+	
+	
 
 	<action name ="PaymentAction" class="com.internousdev.struts2.action.PaymentAction" method="execute">
 		<result name="success">confirm.jsp</result>

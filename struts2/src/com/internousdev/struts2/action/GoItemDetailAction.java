@@ -19,6 +19,8 @@ public class GoItemDetailAction extends ActionSupport implements SessionAware{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String userID;
+
 	private String itemID;
 
 	private String itemName;
@@ -34,6 +36,7 @@ public class GoItemDetailAction extends ActionSupport implements SessionAware{
 
 	public String execute(){
 		String result = ERROR;
+		System.out.println("GoItemDetailAction userID:"+userID);
 		GoItemDetailDAO dao = new GoItemDetailDAO();
 		itemInfoList = dao.select(itemID);
 
@@ -154,6 +157,28 @@ public class GoItemDetailAction extends ActionSupport implements SessionAware{
 	 */
 	public void setItemInfoList(ArrayList<ItemDTO> itemInfoList) {
 		this.itemInfoList = itemInfoList;
+	}
+
+
+
+	/**
+	 * userID取得メソッド
+	 * @auther jk
+	 * @return userID
+	 */
+	public String getUserID() {
+		return userID;
+	}
+
+
+
+	/**
+	 *  userID格納メソッド
+	 * @auther jk
+	 * @param userID
+	 */
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
 

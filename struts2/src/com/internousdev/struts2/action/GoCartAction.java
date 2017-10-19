@@ -50,6 +50,7 @@ public class GoCartAction extends ActionSupport implements SessionAware {
 		GoCartDAO dao = new GoCartDAO();
 		userID = (String) session.get("userID");
 		itemID = (String) session.get("itemID");
+		System.out.println("GoCartAction userID:"+userID);
 		//在庫切れ判定
 		if(stocks == 0){
 			System.out.println("この商品は在庫切れ");

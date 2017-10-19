@@ -6,13 +6,13 @@ package com.internousdev.struts2.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.internousdev.struts2.util.DBConnector;
 
 public class CartDeleteDAO {
 
-	public int delete(String userID, ArrayList<String> itemIdList){
+	public int delete(String userID, List<String> itemIdList){
 		int ret = 0;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();

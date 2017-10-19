@@ -1,6 +1,8 @@
 
 package com.internousdev.struts2.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDTO {
 
@@ -17,6 +19,10 @@ public class ItemDTO {
 	private int imgPath;
 
 	private int subtotal;
+
+	private boolean check;
+
+	public List<String> itemIdList = new ArrayList<String>();
 
 	/**
 	 * itemID取得メソッド
@@ -132,6 +138,14 @@ public class ItemDTO {
 
 	public void setSubtotal(int subtotal) {
 		this.subtotal = subtotal;
+	}
+
+	public boolean isCheck() {
+		return check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
 	}
 
 

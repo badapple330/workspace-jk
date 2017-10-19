@@ -8,9 +8,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.struts2.dao.LoginDAO;
 import com.internousdev.struts2.dto.ItemDTO;
-import com.internousdev.struts2.dto.LoginDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -36,7 +34,8 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	private String itemID;
 
 	public String execute(){
-		String ret = ERROR;
+		String ret = SUCCESS;
+		/**
 		LoginDAO dao = new LoginDAO();
 		LoginDTO dto = new LoginDTO();
 
@@ -54,6 +53,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 				}
 			}
 		}
+		*/
 		return ret;
 	}
 

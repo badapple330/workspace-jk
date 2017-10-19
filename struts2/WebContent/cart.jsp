@@ -18,26 +18,43 @@
 		<th><s:text name="個別合計"/></th>
 	</tr>
 
-	<s:iterator value="cartInfoList">
-
+<s:form action = "CartDeleteAction">
+<s:hidden name="userID" value="%{userID}"/>
+<s:iterator value="cartInfoList" status="st">
 	<tr><!-- itemIDをリストで受け取る。 -->
 		<td><s:property value="itemName" /></td>
 		<td><s:property value="price" /></td>
-		<td>
-			<s:form action = "CartUpdateAction"><!-- ここの個数限界stock参照してぇ -->
+		<td><!-- ここの個数限界stock参照してぇ -->
+			<!--<s:form action = "CartUpdateAction">
 				<s:select name="quantity" list="{\"1\",\"2\",\"3\",\"4\",\"5\"}" />
-				<s:hidden name="itemID"><s:property value="itemID"/></s:hidden>
+					<s:hidden name="itemID" value="%{itemID}"></s:hidden>
 				<s:submit value="更新"/>
-			</s:form></td>
+			</s:form>-->
+			ITEMID=<s:property value="itemID" />
+		</td>
 		<td><s:property value="subtotal" /></td>
-		<td><s:form action = "CartDeleteAction">
-				<s:checkbox name="itemIdList" >
-				<s:hidden name="itemIdList"><s:property value="itemID"/></s:hidden>
-				</s:checkbox>
-				<s:submit value="削除"/>
-			</s:form></td>
+		<td>
+		<s:checkbox name="checkList" value="check" id ="%{#st.index}" fieldValue="%{#st.index}"/>
+		<!--<s:checkbox name="checkList[%{#st.index}]" id ="%{#st.index}" fieldValue=""/>-->
+		<!--<s:checkbox name="checkList[%{#st.index}]" value="checked" fieldValue="%{#st.index}"/>-->
+		<!--<s:hidden name="cartInfoList[%{#st.index}]" value="%{cartInfoList[#st.index]}"/>-->
+		<input type="hidden" name="cartInfoList" value="<s:property value='cartInfoList'/>">
+		</td>
 	</tr>
-	</s:iterator>
+
+</s:iterator>
+<!--
+<s:iterator value="cartInfoList" status="st">
+
+		<s:hidden name="itemName" value="itemName" />
+		<s:hidden name="price" value="price" />
+		<s:hidden name="itemID" value="itemID" />
+		<s:hidden name="subtotal" value="subtotal" />
+		<s:hidden name="cartInfoList%{#st.index}" value="%{cartInfoList[#st.index]}"/>
+</s:iterator>
+ -->
+<s:submit value="削除"/>
+</s:form>
 </table>
 合計金額：<s:property value="amountAll"/>
 
