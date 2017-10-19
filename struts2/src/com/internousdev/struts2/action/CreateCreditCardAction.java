@@ -3,11 +3,13 @@
  */
 package com.internousdev.struts2.action;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.struts2.dao.CreateCreditCardDAO;
+import com.internousdev.struts2.dto.PaymentDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CreateCreditCardAction extends ActionSupport implements SessionAware{
@@ -33,11 +35,14 @@ public class CreateCreditCardAction extends ActionSupport implements SessionAwar
 
 	private Map<String, Object> session;
 
+	ArrayList<PaymentDTO> cardInfo = new ArrayList<PaymentDTO>();
+
 	public String execute(){
 		String ret = ERROR;
 		userID = (String) session.get("userID");
 		CreateCreditCardDAO dao = new CreateCreditCardDAO();
-		if(dao.insert(userID,cardCategory,cardHolder,cardNumber,month,year,security)>0){
+		//dao.insert(userID,cardCategory,cardHolder,cardNumber,month,year,security)
+		if((cardInfo = dao.insert(userID,cardCategory,cardHolder,cardNumber,month,year,security))!=null){
 			ret = SUCCESS;
 		}
 		return ret;

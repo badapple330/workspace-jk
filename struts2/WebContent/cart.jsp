@@ -45,7 +45,6 @@
 </s:iterator>
 <!--
 <s:iterator value="cartInfoList" status="st">
-
 		<s:hidden name="itemName" value="itemName" />
 		<s:hidden name="price" value="price" />
 		<s:hidden name="itemID" value="itemID" />
@@ -58,7 +57,7 @@
 </table>
 合計金額：<s:property value="amountAll"/>
 
-<s:form action="GoPyamentAction">
+<s:form action="GoPaymentAction">
 	<s:submit value="支払い方法選択へ"/>
 </s:form>
 

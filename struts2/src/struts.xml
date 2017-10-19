@@ -35,8 +35,11 @@
 		<result name="success">payment.jsp</result>
 		<result name="error">cart.jsp</result>
 	</action>
-	
-	
+
+	<action name ="CreateCreditCardAction" class="com.internousdev.struts2.action.CreateCreditCardAction" method="execute">
+		<result name="success">createcreditcard.jsp</result>
+		<result name="error">payment.jsp</result>
+	</action>
 
 	<action name ="PaymentAction" class="com.internousdev.struts2.action.PaymentAction" method="execute">
 		<result name="success">confirm.jsp</result>
@@ -51,6 +54,10 @@
 	<action name ="MypageAction" class="com.internousdev.struts2.action.MypageAction" method="execute">
 		<result name="success">mypage.jsp</result>
 		<result name="error">mypage.jsp</result>
+	</action>
+
+		<action name ="GoCreditCardAction" class="com.internousdev.struts2.action.GoCreditCardAction" method="execute">
+		<result name="success">createcreditcard.jsp</result>
 	</action>
 
 </package>
