@@ -4,11 +4,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta charset="utf-8">
+	<title>商品詳細画面</title>
+	<style type="text/css">
+
+		/* ========TAG LAYOUT======== */
+		body {
+		   margin:0;
+		   padding:0;
+		   line-height:1.6;
+		   letter-spacing:1px;
+		   font-family:Verdana, Helvetica, sans-serif;
+		   font-size:12px;
+		   color:#333;
+		   background:#fff;
+		}
+
+		table {
+			text-align:center;
+			margin:0 auto;
+		}
+
+		/* ========ID LAYOUT======== */
+		#top {
+		   width:780px;
+		   margin:30px auto;
+		   border:1px solid #333;
+		}
+
+		#header {
+		   width: 100%;
+		   height: 80px;
+		   background-color: black;
+		}
+
+		#main {
+		   width: 100%;
+		   height: 500px;
+		   text-align: center;
+		}
+
+		#footer {
+			width: 100%;
+			height: 80px;
+			background-color: black;
+			clear:both;
+		}
+
+		#text-link {
+			display: inline-block;
+			text-align: right;
+		}
+	</style>
 </head>
 <body>
-
+	<div id="header">
+	 	<div id="pr">
+		</div>
+	</div>
+	<div id="main">
+		<div id="top">
+			<p>Login</p>
+		</div>
+		<div>
+<s:form action = "CartDeleteAction">
 <table border="1">
 <!-- td=データ th=見出し -->
 	<tr>
@@ -16,36 +82,32 @@
 		<th><s:text name="値段"/></th>
 		<th><s:text name="個数"/></th>
 		<th><s:text name="個別合計"/></th>
+		<th><s:text name="削除チェック"/></th>
 	</tr>
 
-<s:form action = "CartDeleteAction">
+
 <s:hidden name="userID" value="%{userID}"/>
 <s:iterator value="cartInfoList" status="st">
-	<tr><!-- itemIDをリストで受け取る。 -->
+	<s:hidden name="itemID" value="%{itemID}"/>
+	<tr>
 		<td><s:property value="itemName" /></td>
 		<td><s:property value="price" /></td>
-		<td><!-- ここの個数限界stock参照してぇ -->
+		<td><s:property value="quantity"/></td>
 			<!--<s:form action = "CartUpdateAction">
-				<s:select name="quantity" list="{\"1\",\"2\",\"3\",\"4\",\"5\"}" />
+					<s:select name="quantity" list="{\"1\",\"2\",\"3\",\"4\",\"5\"}" />
 					<s:hidden name="itemID" value="%{itemID}"></s:hidden>
-				<s:submit value="更新"/>
+				s:submit value="更新"/>
 			</s:form>-->
-			ITEMID=<s:property value="itemID" />
-		</td>
 		<td><s:property value="subtotal" /></td>
-		<td>
-		<s:checkbox name="checkList" value="check" id ="%{#st.index}" fieldValue="%{#st.index}"/>
-		<!--<s:checkbox name="checkList[%{#st.index}]" id ="%{#st.index}" fieldValue=""/>-->
-		<!--<s:checkbox name="checkList[%{#st.index}]" value="checked" fieldValue="%{#st.index}"/>-->
-		<!--<s:hidden name="cartInfoList[%{#st.index}]" value="%{cartInfoList[#st.index]}"/>-->
-		<input type="hidden" name="cartInfoList" value="<s:property value='cartInfoList'/>">
+		<td><!--  value="check"が入ってたid ="%{#st.index}" value="%{#st.index}" -->
+			<input type="checkbox" name="checkList" value="<s:property value='itemID' />"/>
+			<input type="hidden" name="cartInfoList" value="<s:property value='cartInfoList'/>">
 		</td>
 	</tr>
-
 </s:iterator>
 <!--
 <s:iterator value="cartInfoList" status="st">
-		<s:hidden name="itemName" value="itemName" />
+		<s:hidden name="itemName" value="%{itemName}" />
 		<s:hidden name="price" value="price" />
 		<s:hidden name="itemID" value="itemID" />
 		<s:hidden name="subtotal" value="subtotal" />
@@ -53,13 +115,23 @@
 </s:iterator>
  -->
 <s:submit value="削除"/>
-</s:form>
 </table>
+</s:form>
 合計金額：<s:property value="amountAll"/>
 
 <s:form action="GoPaymentAction">
 	<s:submit value="支払い方法選択へ"/>
 </s:form>
-
+			<br/>
+			<div id="text-link">
+				<p>マイページへは<a href='<s:url action="GoCreateUserAction" />'>こちら</a></p>
+				<p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+	 	<div id="pr">
+		</div>
+	</div>
 </body>
 </html>

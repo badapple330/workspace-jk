@@ -8,7 +8,7 @@ create table user(
 id int auto_increment,
 user_id varchar(255) primary key,
 password varchar(255),
-adminflg int,
+adminflg int default 0,
 index(id)
 );
 
@@ -58,6 +58,8 @@ insert into user values(4, "saburo", "123", 0);
 insert into items(
 item_id, item_name, price, stocks
 )values
-(1, 'テストテスト', 1024, 255),
-(2, 'aaaaa', 9999, 314),
-(3, 'bbbbb', 65535, 37);
+(1, '商品1', 520, 150),
+(2, '商品2', 670, 200),
+(3, '商品3', 1200, 250);
+
+insert into creditcard values(1, "taro","visa","taro","1111","3","2017","123");

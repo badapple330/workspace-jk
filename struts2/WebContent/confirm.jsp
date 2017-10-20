@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <table border="1">
 	<tr>
 		<th><s:text name="商品名"/></th>

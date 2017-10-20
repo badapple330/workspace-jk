@@ -7,7 +7,7 @@
 <constant name ="struts.devMode" value="true"/>
 <package name="com.internousdev.struts2.action" extends="struts-default">
 	<action name ="LoginAction" class="com.internousdev.struts2.action.LoginAction" method="execute">
-		<result name="success">loginSuccess.jsp</result>
+		<result name="success">home.jsp</result>
 		<result name="error">login.jsp</result>
 	</action>
 
@@ -18,7 +18,7 @@
 
 	<action name ="GoCartAction" class="com.internousdev.struts2.action.GoCartAction" method="execute">
 		<result name="success">cart.jsp</result>
-		<result name="error">loginSuccess.jsp</result>
+		<result name="error">home.jsp</result>
 	</action>
 
 	<action name ="CartUpdateAction" class="com.internousdev.struts2.action.CartUpdateAction" method="execute">
@@ -56,9 +56,31 @@
 		<result name="error">mypage.jsp</result>
 	</action>
 
-		<action name ="GoCreditCardAction" class="com.internousdev.struts2.action.GoCreditCardAction" method="execute">
+	<action name ="GoCreditCardAction" class="com.internousdev.struts2.action.GoCreditCardAction" method="execute">
 		<result name="success">createcreditcard.jsp</result>
 	</action>
 
+	<action name ="UserCreateAction" class="com.internousdev.struts2.action.UserCreateAction" method="execute">
+		<result name="success">login.jsp</result>
+		<result name="error">createuser.jsp</result>
+	</action>
+
+	<action name ="GoCreateUserAction" class="com.internousdev.struts2.action.GoCreateUserAction" method="execute">
+		<result name="success">createuser.jsp</result>
+	</action>
+
+	<action name ="GoHomeAction" class="com.internousdev.struts2.action.GoHomeAction" method="execute">
+		<result name="success">home.jsp</result>
+	</action>
+
+	<action name ="HomeAction" class="com.internousdev.struts2.action.HomeAction" method="execute">
+		<result name="success">home.jsp</result>
+		<result name="error">login.jsp</result>
+	</action>
+
+	<action name ="CheckCreditcardAction" class="com.internousdev.struts2.action.CheckCreditcardAction" method="execute">
+		<result name="success">checkcreditcard.jsp</result>
+		<result name="error">createcreditcard.jsp</result>
+	</action>
 </package>
 </struts>

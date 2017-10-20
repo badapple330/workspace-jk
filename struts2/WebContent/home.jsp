@@ -12,7 +12,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta charset="utf-8">
-	<title>User登録画面</title>
+	<title>Login画面</title>
 	<style type="text/css">
 
 		/* ========TAG LAYOUT======== */
@@ -63,6 +63,10 @@
 			text-align: right;
 		}
 	</style>
+
+	<s:if test="itemList == null ">
+		<meta http-equiv="refresh" content="0; <s:url action="HomeAction"/>">
+	</s:if>
 </head>
 <body>
 	<div id="header">
@@ -74,14 +78,13 @@
 			<p>Login</p>
 		</div>
 		<div>
-			<h3>アカウント情報を入力してください</h3>
-				<s:form action="UserCreateAction">
-					<s:textfield name="userID" placeholder="userID" />
-					<s:password name ="password" placeholder="password" />
-					<s:submit value="アカウントを登録"/>
-				</s:form>
+			<h3>ホーム画面</h3>
+				<s:iterator value = "itemList">
+					<a href="<s:url action="GoItemDetailAction"><s:param name="itemID" value="itemID"/></s:url>"><s:property value="itemName"/></a>
+				</s:iterator>
 			<br/>
 			<div id="text-link">
+				<p>マイページへは<a href='<s:url action="GoCreateUserAction" />'>こちら</a></p>
 				<p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
 			</div>
 		</div>

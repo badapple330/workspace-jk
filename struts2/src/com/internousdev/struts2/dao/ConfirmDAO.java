@@ -23,7 +23,7 @@ public class ConfirmDAO {
 		int ret = 0;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-		String sql = "insert into cart(user_id, item_id, item_name, price, quantity) "
+		String sql = "insert into history(user_id, item_id, item_name, price, quantity) "
 				+ "values(?,?,?,?,?)";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);

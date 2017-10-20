@@ -30,8 +30,6 @@ public class ConfirmAction extends ActionSupport implements SessionAware{
 
 	private int price;
 
-	private int stocks;
-
 	private int quantity;
 
 	private int subtotal;
@@ -108,12 +106,6 @@ public class ConfirmAction extends ActionSupport implements SessionAware{
 		this.subtotal = subtotal;
 	}
 
-	public int getStocks() {
-		return stocks;
-	}
 
-	public void setStocks(int stocks) {
-		this.stocks = stocks;
-	}
 
 }

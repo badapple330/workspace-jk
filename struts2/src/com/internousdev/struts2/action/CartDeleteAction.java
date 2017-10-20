@@ -34,7 +34,7 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 
 	private int amountAll;
 
-	private boolean check;
+//	private boolean check;
 
 //	private String checkList;
 	private ArrayList<Object> checkList = new ArrayList<Object>();
@@ -52,27 +52,25 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 		userID = (String) session.get("userID");
 		GoCartDAO dao2 = new GoCartDAO();
 		cartInfoList = dao2.select(userID);
-		System.out.println(check);
+//		System.out.println(check);
 		System.out.println(checkList.get(0));
-		System.out.println(cartInfoList.get(0).getItemID());
+//		System.out.println(cartInfoList.get(0).getItemID());
 
 		for(int i=0; i<checkList.size();i++){
 //			if((int)checkList.get(i)==i){
-
-//			String item_id = cartInfoList.get((int)checkList.get(i)).getItemID();
-			//System.out.println("ITEMID="+item_id);
-			itemIdList.add(cartInfoList.get(Integer.parseInt(checkList.get(i).toString())).getItemID());
+//				String item_id = cartInfoList.get((int)checkList.get(i)).getItemID();
+//				System.out.println("ITEMID="+item_id);
+//				itemIdList.add(cartInfoList.get(Integer.parseInt(checkList.get(i).toString())).getItemID());
 //			}
+			itemIdList.add(checkList.get(i).toString());
 		}
-
-		System.out.println(cartInfoList.get(0).getItemID());
+//		System.out.println(cartInfoList.get(0).getItemID());
 		userID = (String) session.get("userID");
 		CartDeleteDAO dao = new CartDeleteDAO();
 //		ArrayList<String> itemIdList = new ArrayList<String>();
 //		itemIdList = getItemIdList();
 //		System.out.println(itemIdList.get(0));
 		if(dao.delete(userID, itemIdList)>0){
-
 			ret = SUCCESS;
 		}
 		cartInfoList = dao2.select(userID);
@@ -163,13 +161,13 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 		this.itemIdList = itemIdList;
 	}
 
-	public boolean getCheck() {
-		return check;
-	}
-
-	public void setCheck(boolean check) {
-		this.check = check;
-	}
+//	public boolean getCheck() {
+//		return check;
+//	}
+//
+//	public void setCheck(boolean check) {
+//		this.check = check;
+//	}
 
 	/**
 	 * checkList取得メソッド

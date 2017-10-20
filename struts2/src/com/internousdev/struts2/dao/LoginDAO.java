@@ -55,6 +55,7 @@ public class LoginDAO {
 			while(rs.next()){
 				ItemDTO dto = new ItemDTO();
 				dto.setItemID(rs.getString("item_id"));
+				dto.setItemName(rs.getString("item_name"));
 				itemList.add(dto);
 			}
 		}catch(SQLException e){

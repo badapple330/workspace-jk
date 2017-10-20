@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.internousdev.struts2.dao.GoCartDAO;
 import com.internousdev.struts2.dao.PaymentDAO;
 import com.internousdev.struts2.dto.ItemDTO;
+import com.internousdev.struts2.dto.PaymentDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PaymentAction extends ActionSupport implements SessionAware{
@@ -35,6 +36,8 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 	private ArrayList<ItemDTO> cartInfoList = new ArrayList<ItemDTO>();
 
+	private ArrayList<PaymentDTO> paymentList = new ArrayList<PaymentDTO>();
+
     private Map<String, Object> session;
 
     private int total;
@@ -47,7 +50,8 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     		//現金かクレカか
     		if(paySelect.equals("1")){ //クレカの場合
     			session.put("paySelect", 1);
-    			if(dao.select(cardCategory, cardHolder, cardNumber, month, year, security, userID)>0){
+    			paymentList = dao.select(cardCategory, cardHolder, cardNumber, month, year, security, userID);
+    			if(paymentList.size()>0){
     				GoCartDAO dao2 = new GoCartDAO();
     				cartInfoList = dao2.select(userID);
     				for(int i=0;i<cartInfoList.size();i++){
@@ -133,6 +137,38 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     public void setSession(Map<String, Object> session) {
         this.session = session;
     }
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public ArrayList<ItemDTO> getCartInfoList() {
+		return cartInfoList;
+	}
+
+	public void setCartInfoList(ArrayList<ItemDTO> cartInfoList) {
+		this.cartInfoList = cartInfoList;
+	}
+
+	public String getCardCategory() {
+		return cardCategory;
+	}
+
+	public void setCardCategory(String cardCategory) {
+		this.cardCategory = cardCategory;
+	}
+
+	public String getPaySelect() {
+		return paySelect;
+	}
+
+	public void setPaySelect(String paySelect) {
+		this.paySelect = paySelect;
+	}
 
 
 }

@@ -42,7 +42,8 @@ public class CreateCreditCardAction extends ActionSupport implements SessionAwar
 		userID = (String) session.get("userID");
 		CreateCreditCardDAO dao = new CreateCreditCardDAO();
 		//dao.insert(userID,cardCategory,cardHolder,cardNumber,month,year,security)
-		if((cardInfo = dao.insert(userID,cardCategory,cardHolder,cardNumber,month,year,security))!=null){
+		if(dao.insert(userID,cardCategory,cardHolder,cardNumber,month,year,security)>0){
+			cardInfo = dao.select(userID,cardCategory,cardHolder,cardNumber,month,year,security);
 			ret = SUCCESS;
 		}
 		return ret;

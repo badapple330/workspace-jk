@@ -35,6 +35,8 @@ public class LoginAction extends ActionSupport implements SessionAware{
 
 	private String itemID;
 
+	private String itemName;
+
 	public String execute(){
 		String ret = SUCCESS;
 		LoginDAO dao = new LoginDAO();
@@ -112,6 +114,14 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	 */
 	public void setItemList(ArrayList<ItemDTO> itemList) {
 		this.itemList = itemList;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
 

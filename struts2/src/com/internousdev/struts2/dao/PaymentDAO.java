@@ -7,23 +7,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.internousdev.struts2.dto.PaymentDTO;
 import com.internousdev.struts2.util.DBConnector;
 
-/**
- * @author internousdev
- *
- */
+
 public class PaymentDAO {
 
-	public int select(String cardCategory, String cardHolder, String cardNumber, String month, String year,
+	public ArrayList<PaymentDTO> select(String cardCategory, String cardHolder, String cardNumber, String month, String year,
 			String security, String userID) {
-//		ArrayList<PaymentDTO> paymentList = new ArrayList<PaymentDTO>;
-		int ret=0;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-		String sql = "select * from creditcard where category=? and name=? and cardnumber=? and month=? and year=? and security=? and userid=?";
+		PaymentDTO dto = new PaymentDTO();
+		ArrayList<PaymentDTO> paymentList = new ArrayList<PaymentDTO>();
+		String sql = "select * from creditcard where category=? and name=? and cardnumber=? and month=? and year=? and security=? and user_id=?";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, cardCategory);
@@ -33,7 +31,17 @@ public class PaymentDAO {
 			ps.setString(5, year);
 			ps.setString(6, security);
 			ps.setString(7, userID);
-			ret = ps.executeUpdate();
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				dto.setCardCategory(rs.getString("category"));
+				dto.setCardHolder(rs.getString("name"));
+				dto.setCardNumber(rs.getString("cardnumber"));
+				dto.setMonth(rs.getString("month"));
+				dto.setYear(rs.getString("year"));
+				dto.setSecurity(rs.getString("security"));
+				dto.setUserID(rs.getString("user_id"));
+				paymentList.add(dto);
+			}
 		}catch(SQLException e){
         	e.printStackTrace();
         	}finally{
@@ -43,7 +51,7 @@ public class PaymentDAO {
 					e.printStackTrace();
 				}
         	}
-		return ret;
+		return paymentList;
 	}
 
 	public PaymentDTO getinfo(String userID){

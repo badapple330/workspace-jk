@@ -28,7 +28,6 @@ public class GoCartDAO {
 			ps.setString(3, itemName);
 			ps.setInt(4, price);
 			ps.setInt(5, quantity);
-
 			ret = ps.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
