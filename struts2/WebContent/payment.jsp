@@ -78,52 +78,108 @@
 		</div>
 		<div>
 			<h3>支払情報入力</h3>
-				<!--
-ここjavascriptで分岐できる？
-あるいは、現金かクレジットカードにsubmitボタンを作成して、
-このjspを再構成する？
+				<table border="0" cellspacing="0" cellpadding="0">
+					  <h4>お支払い方法</h4>
+					 <tr>
+						<td>
+							<label><input type="radio" name="paySelect" value="hoge1" onclick="formChange1();" required/>口座引き落とし</label>
+							<label><input type="radio" name="paySelect" value="hoge2" onclick="formChange1();" required/>クレジットカード</label>
+					   </td>
+					</tr>
+					<tr>
+					   <td>
+		                    <form name="PaymentAction" id="PaymentAction" action="/struts2/PaymentAction.action" method="post">
+		                    <div id="firstBox">
+		                    <h4>口座引き落とし</h4>
+							 <input type="text" value="" placeholder="口座番号を入力"/>     <!-- ←ここinsert -->
+							 <input type="text" value="" placeholder="名義"/>
+							 <p>
+							 <input type="submit" value="確認画面へ進む"/>
+							 </p>
+							</div>
+							</form>
+						</td>
+					</tr>
+					<!--
+					<tr>
+    				   <th>クレジットカード入力</th>
+    				 </tr>
+    				  -->
+    				 <tr>
+					   <td>
+					   <form name="PaymentAction" id="PaymentAction" action="/struts2/PaymentAction.action" method="post">
+					   <div id="secondBox">
+					   <h4>クレジットカード入力</h4>
+					       <!--
+							    <p>
+							        <select name="paySelect" required>
+							            <option value="">--</option>
+							            <option value="0">口座振込</option>
+							            <p><option value="1">クレジットカード</option></p>
+							        </select>
+							    </p>
+						    -->
+							    <p>
+							        <select name="cardCategory" required>
+							            <option value="visa">Visa</option>
+							            <option value="mastercard">MasterCard</option>
+							            <option value="americanexpress">American Express</option>
+							        </select>
+							    </p>
+							    <p>クレジットカード名義：<input name="cardHolder" size="25" maxlength="40" value="" required /></p>
+							    <p>クレジットカード番号：<input type="text" name="cardNumber" size="25" maxlength="40" value="" required onKeyup="this.value=this.value.replace(/[^0-9]+/,'')" placeholder="半角数値を入力"/></p>
+							    <p>期限月：
+							        <select name="month" required>
+							            <option value="">--</option>
+							            <option value="1" >01</option>
+							            <option value="2" >02</option>
+							            <option value="3" >03</option>
+							            <option value="4" >04</option>
+							            <option value="5" >05</option>
+							            <option value="6" >06</option>
+							            <option value="7" >07</option>
+							            <option value="8" >08</option>
+							            <option value="9" >09</option>
+							            <option value="10" >10</option>
+							            <option value="11" >11</option>
+							            <option value="12" >12</option>
+							        </select>
+							    <!-- jQueryで自動算出 -->
+							    期限年：
+							       <select name="year" required>
+							            <option value="">--</option>
+							            <option value="2017" >2017</option>
+							            <option value="2018" >2018</option>
+							            <option value="2019" >2019</option>
+							            <option value="2020" >2020</option>
+							            <option value="2021" >2021</option>
+							        </select>
+							    <!-- <input name="year" size="21" maxlength="30" value="" required /></p>  -->
+							    <p>セキュリティコード：<input type="text" name="security" size="25" maxlength="40" value="" required onKeyup="this.value=this.value.replace(/[^0-9]+/,'')" placeholder="半角数値を入力"/></p>
+							    <input type="submit" value="確認画面へ進む"/>
+						  </div>
+                        </form>
+					</td>
+				</tr>
+               </table>
 
-<a href="createcreditcard.jsp">クレジットカードを登録する</a>
--->
-<s:form action="PaymentAction">
-		<!-- 現金を選択したらjavascriptでクレカ入力欄機能を停止させる。あるいはs:if test -->
-	<p>
-		<select name="paySelect" required>
-			<option value="">--</option>
-			<option value="0">現金</option>
-			<option value="1">クレジットカード</option>
-		</select>
-	</p>
-	<p>
-		<select name="cardCategory" required>
-			<option value="visa">Visa</option>
-			<option value="mastercard">MasterCard</option>
-			<option value="americanexpress">American Express</option>
-		</select>
-	</p>
-	<p>クレジットカード名義：<input name="cardHolder" size="25" maxlength="40" value="" required /></p>
-	<p>クレジットカード番号：<input name="cardNumber" size="25" maxlength="40" value="" required /></p>
-	<p>期限月：
-		<select name="month" required>
-			<option value="">--</option>
-			<option value="1" >01</option>
-			<option value="2" >02</option>
-			<option value="3" >03</option>
-			<option value="4" >04</option>
-			<option value="5" >05</option>
-			<option value="6" >06</option>
-			<option value="7" >07</option>
-			<option value="8" >08</option>
-			<option value="9" >09</option>
-			<option value="10" >10</option>
-			<option value="11" >11</option>
-			<option value="12" >12</option>
-		</select>
-	<!-- jQueryで自動算出 -->
-	期限年：<input name="year" size="21" maxlength="30" value="" required /></p>
-	<p>セキュリティコード：<input name="security" size="25" maxlength="40" value="" required /></p>
-	<s:submit value="確認画面へ進む"/>
-</s:form>
+			<script type="text/javascript">
+			function formChange1(){
+			radio = document.getElementsByName('paySelect')
+			if(radio[0].checked) {
+			document.getElementById('firstBox').style.display = "";
+			document.getElementById('secondBox').style.display = "none";
+			}else if(radio[1].checked) {
+			document.getElementById('firstBox').style.display = "none";
+			document.getElementById('secondBox').style.display = "";
+			}
+			}
+
+
+
+			//オンロードさせ、リロード時に選択を保持
+			window.onload = formChange1;
+			</script>
 			<br/>
 			<div id="text-link">
 				<p>クレジットカードを登録する場合は<a href="<s:url action="GoCreditCardAction" />">こちら</a></p>

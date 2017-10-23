@@ -50,8 +50,23 @@ public class GoCartAction extends ActionSupport implements SessionAware {
 		GoCartDAO dao = new GoCartDAO();
 		userID = (String) session.get("userID");
 		itemID = (String) session.get("itemID");
-		System.out.println("GoCartAction userID:"+userID);
-		//在庫切れ判定
+		//cart内部同じ商品gな存在するときの処理
+		ItemDTO dto = new ItemDTO();
+		dto = dao.check(userID, itemID);
+		if(dto.getQuantity()>0){
+			System.out.println("ccc");
+			if(dao.update(userID, itemID, dto.getQuantity()+1)>0){
+				System.out.println("dddd");
+				ret = SUCCESS;
+				cartInfoList = dao.select(userID);
+				for(int i=0;i<cartInfoList.size();i++){
+					amountAll = amountAll + (cartInfoList.get(i).getSubtotal());
+				}
+				itemIdList = dao.getItemIdList();
+			}
+			return ret;
+		}
+		//在庫切れ判定。といっても実際には使ってない。
 		if(stocks == 0){
 			System.out.println("この商品は在庫切れ");
 			GoItemDetailDAO dao2 = new GoItemDetailDAO();

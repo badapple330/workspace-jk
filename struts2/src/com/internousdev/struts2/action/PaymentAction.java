@@ -50,6 +50,7 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     		//現金かクレカか
     		if(paySelect.equals("1")){ //クレカの場合
     			session.put("paySelect", 1);
+    			paySelect = "クレジットカード";
     			paymentList = dao.select(cardCategory, cardHolder, cardNumber, month, year, security, userID);
     			if(paymentList.size()>0){
     				GoCartDAO dao2 = new GoCartDAO();
@@ -63,6 +64,7 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     				ret = ERROR;
     			}
     		}else{ //現金の場合
+    			paySelect = "口座振込";
     			ret = SUCCESS;
     			GoCartDAO dao2 = new GoCartDAO();
 				cartInfoList = dao2.select(userID);

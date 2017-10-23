@@ -74,7 +74,7 @@
 			<p>Login</p>
 		</div>
 		<div>
-			<h3>サイトのご利用のためにはログインをお願いします。</h3>
+			<h3>ログイン</h3>
 			<s:form action="LoginAction">
 				<s:textfield name="userID" placeholder="userID"/>
 				<s:password name ="password" placeholder="password"/>

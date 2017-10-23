@@ -35,13 +35,64 @@ public class GoCartDAO {
 		return ret;
 	}
 
+//同じ商品があるかcheck
+	public ItemDTO check(String userID, String itemID){
+		DBConnector db = new DBConnector();
+		Connection con = db.getConnection();
+		String sql = "select * from cart where user_id =? and item_id =?";
+		ItemDTO dto = new ItemDTO();
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, userID);
+			ps.setString(2, itemID);
+			ResultSet rs = ps.executeQuery();
+			System.out.println("aaa");
+			if(rs.next()){
+				System.out.println("bbb");
+				dto.setItemID(rs.getString("user_id"));
+				dto.setItemName(rs.getString("item_id"));
+				dto.setQuantity(rs.getInt("quantity"));
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+			con.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
+
+	public int update(String userID, String itemID, int quantity){
+		int ret = 0;
+		DBConnector db = new DBConnector();
+		Connection con = db.getConnection();
+		String sql = "update cart set quantity=? where user_id=? and item_id=?";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, quantity);
+			ps.setString(2, userID);
+			ps.setString(3, itemID);
+			ret = ps.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try{
+			con.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
 
 //表示用のリストをcartから取得
 	public ArrayList<ItemDTO> select(String userID){
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 		ArrayList<ItemDTO> cartInfoList = new ArrayList<ItemDTO>();
-
 
 		String sql="select * from cart where user_id=?";
 		try{

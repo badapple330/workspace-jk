@@ -92,7 +92,7 @@
 	<tr>
 		<td><s:property value="itemName" /></td>
 		<td><s:property value="price" /></td>
-		<td><s:property value="quantity"/></td>
+		<td><input type="number" name="quantity" value=<s:property value="quantity"></s:property> min="0" max="1000" size="3" readonly></td>
 			<!--<s:form action = "CartUpdateAction">
 					<s:select name="quantity" list="{\"1\",\"2\",\"3\",\"4\",\"5\"}" />
 					<s:hidden name="itemID" value="%{itemID}"></s:hidden>

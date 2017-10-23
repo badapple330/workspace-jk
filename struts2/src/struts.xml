@@ -37,7 +37,7 @@
 	</action>
 
 	<action name ="CreateCreditCardAction" class="com.internousdev.struts2.action.CreateCreditCardAction" method="execute">
-		<result name="success">createcreditcard.jsp</result>
+		<result name="success">successregister.jsp</result>
 		<result name="error">payment.jsp</result>
 	</action>
 
@@ -82,5 +82,10 @@
 		<result name="success">checkcreditcard.jsp</result>
 		<result name="error">createcreditcard.jsp</result>
 	</action>
+
+	<action name ="ConfirmAction" class="com.internousdev.struts2.action.ConfirmAction" method="execute">
+        <result name="success">succesconfirm.jsp</result>
+        <result name="error">error.jsp</result>
+    </action>
 </package>
 </struts>
