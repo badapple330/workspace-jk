@@ -70,14 +70,19 @@ public class GoMypageAction extends ActionSupport implements SessionAware{
 		itemList = dao.selecthistory(userID);
 		if(itemList.size()>0){
 			ret = SUCCESS;
-			if((dto2 = dao2.getinfo(userID))!=null){
-				cardCategory = dto2.getCardCategory();
-				cardHolder = dto2.getCardHolder();
-				cardNumber = dto2.getCardNumber();
-				month = dto2.getMonth();
-				year = dto2.getYear();
-				security = dto2.getSecurity();
-			}
+		}else{
+			System.out.println("購入履歴がありません");
+		}
+		if((dto2 = dao2.getinfo(userID))!=null){
+			ret = SUCCESS;
+			cardCategory = dto2.getCardCategory();
+			cardHolder = dto2.getCardHolder();
+			cardNumber = dto2.getCardNumber();
+			month = dto2.getMonth();
+			year = dto2.getYear();
+			security = dto2.getSecurity();
+		}else{
+			System.out.println("クレジットカードが登録されていません");
 		}
 		return ret;
 	}

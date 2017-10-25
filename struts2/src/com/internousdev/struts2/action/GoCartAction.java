@@ -65,21 +65,22 @@ public class GoCartAction extends ActionSupport implements SessionAware {
 				itemIdList = dao.getItemIdList();
 			}
 			return ret;
-		}
-		//在庫切れ判定。といっても実際には使ってない。
-		if(stocks == 0){
-			System.out.println("この商品は在庫切れ");
-			GoItemDetailDAO dao2 = new GoItemDetailDAO();
-			setItemInfoList(dao2.select(userID));
-			return ret;
 		}else{
-			if(dao.insert(userID, itemID, itemName, price, 1)>0){
-				cartInfoList = dao.select(userID);
-				for(int i=0;i<cartInfoList.size();i++){
-					amountAll = amountAll + (cartInfoList.get(i).getSubtotal());
+//		在庫切れ判定。といっても実際には使ってない。
+			if(stocks == 0){
+				System.out.println("この商品は在庫切れ");
+				GoItemDetailDAO dao2 = new GoItemDetailDAO();
+				setItemInfoList(dao2.select(userID));
+				return ret;
+			}else{
+				if(dao.insert(userID, itemID, itemName, price, 1)>0){
+					cartInfoList = dao.select(userID);
+					for(int i=0;i<cartInfoList.size();i++){
+						amountAll = amountAll + (cartInfoList.get(i).getSubtotal());
+					}
+					itemIdList = dao.getItemIdList();
+					ret = SUCCESS;
 				}
-				itemIdList = dao.getItemIdList();
-				ret = SUCCESS;
 			}
 		}
 		return ret;

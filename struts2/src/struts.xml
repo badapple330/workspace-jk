@@ -93,5 +93,11 @@
         <result name="success">mypage.jsp</result>
         <result name="error">mypage.jsp</result>
     </action>
+
+    <action name ="GoCartFromHeaderAction" class="com.internousdev.struts2.action.GoCartFromHeaderAction" method="execute">
+        <result name="success">cart.jsp</result>
+        <result name="error">cart.jsp</result>
+    </action>
+
 </package>
 </struts>
