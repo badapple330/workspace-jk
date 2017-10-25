@@ -88,7 +88,7 @@
 				</s:form>
 			<br/>
 			<div id="text-link">
-				<p>マイページへは<a href='<s:url action="GoCreateUserAction" />'>こちら</a></p>
+				<p>マイページへは<a href='<s:url action="GoMypageAction" />'>こちら</a></p>
 				<p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
 			</div>
 		</div>

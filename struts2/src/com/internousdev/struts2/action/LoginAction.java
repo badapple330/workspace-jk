@@ -38,7 +38,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	private String itemName;
 
 	public String execute(){
-		String ret = SUCCESS;
+		String ret = ERROR;
 		LoginDAO dao = new LoginDAO();
 		LoginDTO dto = new LoginDTO();
 

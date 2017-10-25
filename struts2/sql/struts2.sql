@@ -47,6 +47,7 @@ item_id varchar(100) not null,
 item_name varchar(100) not null,
 price int not null,
 quantity int not null,
+purchasetime datetime  DEFAULT CURRENT_TIMESTAMP,
 index(id)
 );
 

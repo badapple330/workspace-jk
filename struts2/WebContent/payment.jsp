@@ -82,8 +82,8 @@
 					  <h4>お支払い方法</h4>
 					 <tr>
 						<td>
-							<label><input type="radio" name="paySelect" value="hoge1" onclick="formChange1();" required/>口座引き落とし</label>
-							<label><input type="radio" name="paySelect" value="hoge2" onclick="formChange1();" required/>クレジットカード</label>
+							<label><input type="radio" name="paySelect" value="0" onclick="formChange1();" required/>口座引き落とし</label>
+							<label><input type="radio" name="paySelect" value="1" onclick="formChange1();" required/>クレジットカード</label>
 					   </td>
 					</tr>
 					<tr>
@@ -94,6 +94,7 @@
 							 <input type="text" value="" placeholder="口座番号を入力"/>     <!-- ←ここinsert -->
 							 <input type="text" value="" placeholder="名義"/>
 							 <p>
+							 <input type ="hidden" name="paySelect" value="0"/>
 							 <input type="submit" value="確認画面へ進む"/>
 							 </p>
 							</div>
@@ -156,6 +157,7 @@
 							        </select>
 							    <!-- <input name="year" size="21" maxlength="30" value="" required /></p>  -->
 							    <p>セキュリティコード：<input type="text" name="security" size="25" maxlength="40" value="" required onKeyup="this.value=this.value.replace(/[^0-9]+/,'')" placeholder="半角数値を入力"/></p>
+							    <input type ="hidden" name="paySelect" value="1"/>
 							    <input type="submit" value="確認画面へ進む"/>
 						  </div>
                         </form>
@@ -183,7 +185,7 @@
 			<br/>
 			<div id="text-link">
 				<p>クレジットカードを登録する場合は<a href="<s:url action="GoCreditCardAction" />">こちら</a></p>
-				<p>マイページへは<a href='<s:url action="GoCreateUserAction" />'>こちら</a></p>
+				<p>マイページへは<a href='<s:url action="GoMypageAction" />'>こちら</a></p>
 				<p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
 			</div>
 		</div>

@@ -26,17 +26,12 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 
 	private int price;
 
-//	private int stocks;
-
-	private int quantity;
+	private String quantity;
 
 	private int subtotal;
 
 	private int amountAll;
 
-//	private boolean check;
-
-//	private String checkList;
 	private ArrayList<Object> checkList = new ArrayList<Object>();
 
 	private ArrayList<ItemDTO> cartInfoList = new ArrayList<ItemDTO>();
@@ -52,24 +47,13 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 		userID = (String) session.get("userID");
 		GoCartDAO dao2 = new GoCartDAO();
 		cartInfoList = dao2.select(userID);
-//		System.out.println(check);
-		System.out.println(checkList.get(0));
-//		System.out.println(cartInfoList.get(0).getItemID());
+//		System.out.println(checkList.get(0));
 
 		for(int i=0; i<checkList.size();i++){
-//			if((int)checkList.get(i)==i){
-//				String item_id = cartInfoList.get((int)checkList.get(i)).getItemID();
-//				System.out.println("ITEMID="+item_id);
-//				itemIdList.add(cartInfoList.get(Integer.parseInt(checkList.get(i).toString())).getItemID());
-//			}
 			itemIdList.add(checkList.get(i).toString());
 		}
-//		System.out.println(cartInfoList.get(0).getItemID());
 		userID = (String) session.get("userID");
 		CartDeleteDAO dao = new CartDeleteDAO();
-//		ArrayList<String> itemIdList = new ArrayList<String>();
-//		itemIdList = getItemIdList();
-//		System.out.println(itemIdList.get(0));
 		if(dao.delete(userID, itemIdList)>0){
 			ret = SUCCESS;
 		}
@@ -121,11 +105,11 @@ public class CartDeleteAction extends ActionSupport implements SessionAware{
 //		this.stocks = stocks;
 //	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 

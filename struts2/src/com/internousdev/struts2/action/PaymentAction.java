@@ -64,7 +64,7 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     				ret = ERROR;
     			}
     		}else{ //現金の場合
-    			paySelect = "口座振込";
+    			paySelect = "口座引き落とし";
     			ret = SUCCESS;
     			GoCartDAO dao2 = new GoCartDAO();
 				cartInfoList = dao2.select(userID);

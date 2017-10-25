@@ -8,17 +8,20 @@ import com.internousdev.struts2.util.DBConnector;
 
 public class CartUpdateDAO {
 
-	public int update(String userID, String itemID, int quantity){
+	public int update(String userID, String[] itemIdAry, int[] quantity){
+		//多分cartをselectで全体を検索→
 		int ret=0;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
 		String sql = "update cart set quantity=? where user_id=? and item_id=?";
 		try{
-			 PreparedStatement ps = con.prepareStatement(sql);
-			 ps.setInt(1, quantity);
-			 ps.setString(2, userID);
-			 ps.setString(3, itemID);
-			 ret = ps.executeUpdate();
+			for(int i=0;i<itemIdAry.length;i++){
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps.setInt(1, quantity[i]);
+				 ps.setString(2, userID);
+				 ps.setString(3, itemIdAry[i]);
+				 ret = ret + ps.executeUpdate();
+			}
 		}catch(SQLException e){
         	e.printStackTrace();
         	}finally{

@@ -30,7 +30,7 @@ public class CartUpdateAction extends ActionSupport implements SessionAware{
 
 	private int stocks;
 
-	private int quantity;
+	private int[] quantity;
 
 	private int subtotal;
 
@@ -40,11 +40,17 @@ public class CartUpdateAction extends ActionSupport implements SessionAware{
 
 	private ArrayList<ItemDTO> cartInfoList = new  ArrayList<ItemDTO>();
 
+	private String[] itemIdAry;
+
 	public String execute(){
 		String ret = ERROR;
 		userID = (String) session.get("userID");
+		itemIdAry = itemID.split(",");
+		for(int i=0;i<itemIdAry.length;i++){
+			itemIdAry[i] = itemIdAry[i].trim();
+		}
 		CartUpdateDAO dao = new CartUpdateDAO();
-		if(dao.update(userID, itemID, quantity)>0){
+		if(dao.update(userID, itemIdAry, quantity)>0){
 			ret = SUCCESS;
 		}
 		GoCartDAO dao2 = new GoCartDAO();
@@ -71,11 +77,11 @@ public class CartUpdateAction extends ActionSupport implements SessionAware{
 		this.itemID = itemID;
 	}
 
-	public int getQuantity() {
+	public int[] getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(int[] quantity) {
 		this.quantity = quantity;
 	}
 

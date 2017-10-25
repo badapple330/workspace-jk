@@ -41,7 +41,7 @@ public class ConfirmAction extends ActionSupport implements SessionAware{
 	private ArrayList<ItemDTO> cartInfoList = new  ArrayList<ItemDTO>();
 
 	public String execute(){
-		String ret = SUCCESS;
+		String ret = ERROR;
 		userID = (String) session.get("userID");
 		GoCartDAO dao = new GoCartDAO();
 		cartInfoList = dao.select(userID);
@@ -53,8 +53,14 @@ public class ConfirmAction extends ActionSupport implements SessionAware{
 			if(dao2.insert(userID, cartInfoList)>0){
 				if(dao2.delete(userID)>0){
 					ret=SUCCESS;
+				}else{
+					System.out.println("カートの削除に失敗しました");
 				}
+			}else{
+				System.out.println("履歴への登録に失敗しました。");
 			}
+		}else{
+			System.out.println("カートに商品が存在していません");
 		}
 		return ret;
 	}

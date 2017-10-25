@@ -92,17 +92,12 @@
 	<tr>
 		<td><s:property value="itemName" /></td>
 		<td><s:property value="price" /></td>
-		<td><input type="number" name="quantity" value=<s:property value="quantity"></s:property> min="0" max="1000" size="3" readonly></td>
-			<!--<s:form action = "CartUpdateAction">
-					<s:select name="quantity" list="{\"1\",\"2\",\"3\",\"4\",\"5\"}" />
-					<s:hidden name="itemID" value="%{itemID}"></s:hidden>
-				s:submit value="更新"/>
-			</s:form>-->
+		<td><input type="number" name="quantity" value=<s:property value="quantity"></s:property> min="0" max="100" size="3" ></td>
 		<td><s:property value="subtotal" /></td>
 		<td><!--  value="check"が入ってたid ="%{#st.index}" value="%{#st.index}" -->
 			<input type="checkbox" name="checkList" value="<s:property value='itemID' />"/>
-			<input type="hidden" name="cartInfoList" value="<s:property value='cartInfoList'/>">
 		</td>
+		<td><input type="submit" formaction="CartUpdateAction" value="個数を更新"></td>
 	</tr>
 </s:iterator>
 <!--
@@ -112,19 +107,18 @@
 		<s:hidden name="itemID" value="itemID" />
 		<s:hidden name="subtotal" value="subtotal" />
 		<s:hidden name="cartInfoList%{#st.index}" value="%{cartInfoList[#st.index]}"/>
-</s:iterator>
- -->
-<s:submit value="削除"/>
+</s:iterator> -->
+<s:submit value="チェックした商品を削除"/>
 </table>
 </s:form>
-合計金額：<s:property value="amountAll"/>
+<h4>合計金額：<s:property value="amountAll"/>円</h4>
 
 <s:form action="GoPaymentAction">
 	<s:submit value="支払い方法選択へ"/>
 </s:form>
 			<br/>
 			<div id="text-link">
-				<p>マイページへは<a href='<s:url action="GoCreateUserAction" />'>こちら</a></p>
+				<p>マイページへは<a href='<s:url action="GoMypageAction" />'>こちら</a></p>
 				<p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
 			</div>
 		</div>

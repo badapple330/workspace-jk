@@ -46,7 +46,7 @@ public class ConfirmDAO {
 		int ret = 0;
 		DBConnector db = new DBConnector();
 		Connection con = db.getConnection();
-		String sql = "delete * from carts where user_id=?";
+		String sql = "delete from cart where user_id=?";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, userID);
