@@ -76,6 +76,7 @@
         #text-link {
             display: inline-block;
             text-align: right;
+            margin-bottom: 40px;
         }
 
         /*****NAV*****/
@@ -141,8 +142,8 @@
             <nav>
               <ul style="list-style:none;">
                 <li><a href="GoHomeAction">トップページ</a></li>
-                <li><a href="MypageAction">マイページ</a></li>
-                <li><a href="GoCartAction">カート</a></li>
+                <li><a href="GoMypageAction">マイページ</a></li>
+                <li><a href="GoCartFromHeaderAction">カート</a></li>
                 <li><a href="LogoutAction">ログアウト</a></li>
               </ul>
             </nav>

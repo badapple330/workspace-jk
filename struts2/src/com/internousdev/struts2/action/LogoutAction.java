@@ -23,9 +23,8 @@ public class LogoutAction extends ActionSupport implements SessionAware{
 
 //loginflagを書き換えるならsession.containskey判定とかしろ
 	public String execute(){
-		String ret = ERROR;
 		session.clear();
-		return ret;
+		return SUCCESS;
 	}
 
 	public Map<String, Object> getSession(){

@@ -12,7 +12,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta charset="utf-8">
-    <title>Login画面</title>
+    <title>ホーム画面</title>
     <style type="text/css">
 
         /* ========TAG LAYOUT======== */
@@ -34,9 +34,10 @@
 
         /* ========ID LAYOUT======== */
         #top {
-           width:780px;
+           width: 90%;
            margin:30px auto;
            border:1px solid #333;
+           margin-top: 10px;
         }
 
         /*****HEADER*****/
@@ -75,11 +76,11 @@
         #text-link {
             display: inline-block;
             text-align: right;
+            margin-bottom: 40px;
         }
 
         /*****NAV*****/
         nav{
-
             width: 100%;    /*横幅の指定*/
             border-bottom: 1px solid orange;    /*下部の線の色を指定*/
             margin-bottom: 5px; /**/
@@ -131,22 +132,19 @@
             letter-spacing: 5px;    /*文字と文字の間隔をあける*/
         }
     </style>
-
     <s:if test="itemList == null">
         <meta http-equiv="refresh" content="0; <s:url action="HomeAction"/>">
     </s:if>
 </head>
-
-
 <body>
     <header>
         <address>Struts2 ECサイト構築練習</address>
     </header>
             <nav>
               <ul style="list-style:none;">
-                <li><a href='<s:url action="GoHomeAction"/>'>トップページ</a></li>
-                <li><a href='<s:url action="GoMypageAction"/>'>マイページ</a></li>
-                <li><a href='<s:url action="GoCartFromHeaderAction"/>'>カート</a></li>
+                <li><a href="GoHomeAction">トップページ</a></li>
+                <li><a href="GoMypageAction">マイページ</a></li>
+                <li><a href="GoCartFromHeaderAction">カート</a></li>
                 <li><a href="LogoutAction">ログアウト</a></li>
               </ul>
             </nav>
@@ -154,7 +152,7 @@
         <div id="top">
             <p>Home</p>
         </div>
-        <div>
+    <div>
             <h3>ホーム画面</h3>
                 <s:iterator value = "itemList">
                     <a href="<s:url action="GoItemDetailAction"><s:param name="itemID" value="itemID"/></s:url>"><s:property value="itemName"/></a>
