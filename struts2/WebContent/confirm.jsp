@@ -169,7 +169,7 @@
     </s:iterator>
 	</table>
 	    <h3>合計金額:<s:property value="total"/></h3><br>
-	<s:if test="#session.paySelect == 1">
+	<s:if test="%{hantei == 1}">    <!-- .equals('1') -->
 	    <p>カード会社：<s:property value="cardCategory" /><s:hidden name="cardCategory" value="%{cardCategory}" />
 	    </p>
 	    <p>カード名義：
@@ -184,15 +184,24 @@
 	    <s:property value="security" /><s:hidden name="security" value="%{security}" />
 	    </p>
 	</s:if>
-	<s:else>
-	    <p>口座振り込み先は *************<p>
-	</s:else>
+
+	<s:if test="%{hantei == 0}">
+	    <h4>口座番号</h4>
+	    <p>口座名義：
+        <s:property value="bankholder" /><s:hidden name="bankholder" value="%{bankholder}" />
+        </p>
+        <p>口座番号：
+        <s:property value="banknumber" /><s:hidden name="banknumber" value="%{banknumber}" />
+        </p>
+	</s:if>
+
 	<s:form action="ConfirmAction">
 	    <s:submit value="注文を完了する"/>
 	</s:form>
+
             <br/>
             <div id="text-link">
-  <!--          <p>支払い画面へ戻る<a href="<s:url action="GoPaymentAction" />">こちら</a></p> -->
+                <p>支払い方法選択画面へ戻る<a href="<s:url action="GoPaymentAction" />">こちら</a></p>
                 <p>マイページへは<a href='<s:url action="GoMypageAction" />'>こちら</a></p>
                 <p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
             </div>

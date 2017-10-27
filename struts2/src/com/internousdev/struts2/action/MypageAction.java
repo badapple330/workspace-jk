@@ -56,6 +56,9 @@ public class MypageAction extends ActionSupport implements SessionAware{
 	private String year;
 
 	private String security;
+	
+	//date
+	private String date;
 
 	public String execute(){
 		String ret = ERROR;
@@ -206,6 +209,14 @@ public class MypageAction extends ActionSupport implements SessionAware{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

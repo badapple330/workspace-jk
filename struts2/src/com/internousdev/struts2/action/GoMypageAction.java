@@ -57,6 +57,9 @@ public class GoMypageAction extends ActionSupport implements SessionAware{
 
 	private String security;
 
+//date
+	private String date;
+
 	public String execute(){
 		String ret = ERROR;
 		userID = (String) session.get("userID");
@@ -196,5 +199,13 @@ public class GoMypageAction extends ActionSupport implements SessionAware{
 
 	public void setSecurity(String security) {
 		this.security = security;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

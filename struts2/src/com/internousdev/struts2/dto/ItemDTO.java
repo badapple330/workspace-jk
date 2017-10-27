@@ -24,6 +24,10 @@ public class ItemDTO {
 
 	public List<String> itemIdList = new ArrayList<String>();
 
+	private String date;
+
+	private int deleteflg;
+
 	/**
 	 * itemID取得メソッド
 	 * @auther jk
@@ -146,6 +150,22 @@ public class ItemDTO {
 
 	public void setCheck(boolean check) {
 		this.check = check;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public int getDeleteflg() {
+		return deleteflg;
+	}
+
+	public void setDeleteflg(int deleteflg) {
+		this.deleteflg = deleteflg;
 	}
 
 

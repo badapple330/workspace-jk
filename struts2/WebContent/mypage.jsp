@@ -222,6 +222,7 @@
             <th>値段</th>
             <th>数量</th>
             <th>小計</th>
+            <th>購入日</th>
         </tr>
         <tr>
             <td><s:property value="itemID"/></td>
@@ -229,6 +230,7 @@
             <td><s:property value="price"/></td>
             <td><s:property value="quantity"/></td>
             <td><s:property value="subtotal"/></td>
+            <td><s:property value="date"/></td>
         </tr>
     </s:iterator>
 </table>

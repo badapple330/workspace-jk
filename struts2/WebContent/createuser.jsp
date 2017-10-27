@@ -37,7 +37,7 @@
            width: 90%;
            margin:30px auto;
            border:1px solid #333;
-           margin-top: 10px;
+           margin-top: 50px;
         }
 
         /*****HEADER*****/
@@ -137,6 +137,7 @@
     <header>
         <address>Struts2 ECサイト構築練習</address>
     </header>
+    <!--
             <nav>
               <ul style="list-style:none;">
                 <li><a href="GoHomeAction">トップページ</a></li>
@@ -145,6 +146,7 @@
                 <li><a href="LogoutAction">ログアウト</a></li>
               </ul>
             </nav>
+     -->
     <div id="main">
         <div id="top">
             <p>Create Account</p>
@@ -152,8 +154,8 @@
     <div>
         <h3>アカウント情報を入力してください</h3>
             <s:form action="UserCreateAction">
-                <s:textfield name="userID" placeholder="userID" />
-                <s:password name ="password" placeholder="password" />
+                 <p><input type="text" name="userID" placeholder="userID" required/></p>
+                 <p><input type="text" name="password" placeholder="password" required/></p>
                 <s:submit value="アカウントを登録"/>
             </s:form>
             <br/>

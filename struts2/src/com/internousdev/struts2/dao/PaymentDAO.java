@@ -82,4 +82,23 @@ public class PaymentDAO {
         	}
 		return dto;
 	}
+
+	public int insertBankInfo(String userID, String banknumber, String bankholder){
+		int ret = 0;
+		DBConnector db = new DBConnector();
+		Connection con = db.getConnection();
+		String sql = "insert into bank(user_id, banknumber, bankholder)"
+				+ "values(?,?,?)";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, banknumber);
+			ps.setString(2, bankholder);
+			ps.setString(3, userID);
+			ret = ps.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return ret;
+	}
+
 }

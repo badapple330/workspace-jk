@@ -57,6 +57,7 @@ public class MypageDAO {
 				dto.setPrice(rs.getInt("price"));
 				dto.setQuantity(rs.getInt("quantity"));
 				dto.setSubtotal((dto.getPrice()*dto.getQuantity()));
+				dto.setDate(rs.getString("purchasetime"));
 				itemInfoList.add(dto);
 			}
 		}catch(SQLException e){

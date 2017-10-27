@@ -42,15 +42,22 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
     private int total;
 
+    private String banknumber;
+
+    private String bankholder;
+
+    private int hantei;
+
     public String execute(){
     	String ret = ERROR;
+    	session.put("paySelect", paySelect);
     	PaymentDAO dao = new PaymentDAO();
     	if (session.containsKey("userID")) {
     		userID = (String) session.get("userID");
     		//現金かクレカか
     		if(paySelect.equals("1")){ //クレカの場合
     			session.put("paySelect", 1);
-    			paySelect = "クレジットカード";
+    			hantei = Integer.parseInt(paySelect);
     			paymentList = dao.select(cardCategory, cardHolder, cardNumber, month, year, security, userID);
     			if(paymentList.size()>0){
     				GoCartDAO dao2 = new GoCartDAO();
@@ -63,13 +70,15 @@ public class PaymentAction extends ActionSupport implements SessionAware{
     				System.out.println("入力ミスが存在します");
     				ret = ERROR;
     			}
-    		}else{ //現金の場合
-    			paySelect = "口座引き落とし";
-    			ret = SUCCESS;
-    			GoCartDAO dao2 = new GoCartDAO();
-				cartInfoList = dao2.select(userID);
-				for(int i=0;i<cartInfoList.size();i++){
-					total = total + (cartInfoList.get(i).getSubtotal());
+    		}else if(paySelect.equals("0")){ //現金の場合
+    			hantei = Integer.parseInt(paySelect);
+				if(dao.insertBankInfo(userID, banknumber, bankholder)>0){
+	    			ret = SUCCESS;
+	    			GoCartDAO dao2 = new GoCartDAO();
+					cartInfoList = dao2.select(userID);
+					for(int i=0;i<cartInfoList.size();i++){
+						total = total + (cartInfoList.get(i).getSubtotal());
+					}
 				}
     		}
     	}
@@ -170,6 +179,38 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 	public void setPaySelect(String paySelect) {
 		this.paySelect = paySelect;
+	}
+
+	public ArrayList<PaymentDTO> getPaymentList() {
+		return paymentList;
+	}
+
+	public void setPaymentList(ArrayList<PaymentDTO> paymentList) {
+		this.paymentList = paymentList;
+	}
+
+	public String getBanknumber() {
+		return banknumber;
+	}
+
+	public void setBanknumber(String banknumber) {
+		this.banknumber = banknumber;
+	}
+
+	public String getBankholder() {
+		return bankholder;
+	}
+
+	public void setBankholder(String bankholder) {
+		this.bankholder = bankholder;
+	}
+
+	public int getHantei() {
+		return hantei;
+	}
+
+	public void setHantei(int hantei) {
+		this.hantei = hantei;
 	}
 
 

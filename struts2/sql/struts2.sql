@@ -17,7 +17,9 @@ create table items(
 item_id varchar(100) not null primary key, /*商品ID*/
 item_name varchar(100) not null,
 price int not null,
-stocks int not null
+stocks int not null,
+deleteflg int default 1,
+imgPath varchar(255)
 );
 
 create table cart(
@@ -38,6 +40,12 @@ month varchar(10) not null,
 year varchar(10) not null,
 security varchar(10) not null,
 index(id)
+);
+
+create table bank(
+user_id varchar(100) not null,
+banknumber varchar(16) not null,
+bankholder varchar(100) not null
 );
 
 create table history(

@@ -164,8 +164,8 @@
                        <form name="PaymentAction" id="PaymentAction" action="/struts2/PaymentAction.action" method="post">
                        <div id="firstBox">
                        <h4>口座引き落とし</h4>
-                        <input type="text" value="" placeholder="口座番号を入力"/>     <!-- ←ここinsert -->
-                        <input type="text" value="" placeholder="名義"/>
+                        <p><input type="text" name="banknumber" value="" placeholder="口座番号を入力" onKeyup="this.value=this.value.replace(/[^0-9]+/,'')" required/></p>     <!-- ←ここinsert -->
+                        <p><input type="text" name="bankholder" value="" placeholder="口座名義" required/></p>
                         <p>
                         <input type ="hidden" name="paySelect" value="0"/>
                         <input type="submit" value="確認画面へ進む"/>
@@ -200,7 +200,7 @@
                                    <option value="americanexpress">American Express</option>
                                </select>
                            </p>
-                           <p>クレジットカード名義：<input name="cardHolder" size="25" maxlength="40" value="" required /></p>
+                           <p>クレジットカード名義：<input name="cardHolder" size="25" maxlength="40" value="" required placeholder="半角英字を入力"/></p>
                            <p>クレジットカード番号：<input type="text" name="cardNumber" size="25" maxlength="40" value="" required onKeyup="this.value=this.value.replace(/[^0-9]+/,'')" placeholder="半角数値を入力"/></p>
                            <p>期限月：
                                <select name="month" required>

@@ -168,7 +168,7 @@
     <tr>
         <td><s:property value="itemName" /></td>
         <td><s:property value="price" /></td>
-        <td><input type="number" name="quantity" value=<s:property value="quantity"></s:property> min="0" max="100" size="3" ></td>
+        <td><input type="number" name="quantity" value=<s:property value="quantity"></s:property> min="0" max="100" size="3" onKeyup="this.value=this.value.replace(/[^0-9]+/,'')"></td>
         <td><s:property value="subtotal" /></td>
         <td><!--  value="check"が入ってたid ="%{#st.index}" value="%{#st.index}" -->
             <input type="checkbox" name="checkList" value="<s:property value='itemID' />"/>
