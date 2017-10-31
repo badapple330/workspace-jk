@@ -67,8 +67,8 @@ insert into user values(4, "saburo", "123", 0);
 insert into items(
 item_id, item_name, price, stocks
 )values
-(1, '商品1', 520, 150),
-(2, '商品2', 670, 200),
-(3, '商品3', 1200, 250);
+(1, '商品1', 520, 150, 1, img/1.png),
+(2, '商品2', 670, 200, 1, img/2.png),
+(3, '商品3', 1200, 250, 1, img/3.png);
 
 insert into creditcard values(1, "taro","visa","taro","1111","3","2017","123");
