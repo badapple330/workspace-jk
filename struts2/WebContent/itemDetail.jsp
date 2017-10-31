@@ -157,7 +157,7 @@
                         <p><s:text name="商品名:"/><s:hidden name="itemName"><s:property value="itemName"/></s:hidden></p>
                         <p><s:text name="値段:"/><s:hidden name="price"><s:property value="price"/></s:hidden></p>
                         <p><s:text name="在庫:"/><s:hidden name="stocks"><s:property value="stocks"/></s:hidden></p>
-                        <p><s:text name="画像:"/><s:property value="imaPath"/></p>
+                        <!-- <p><s:text name="画像:"/><s:property value="imaPath"/></p> -->
                         <s:submit value="カートに入れる"/>
                     </s:iterator>
                 </s:form>
